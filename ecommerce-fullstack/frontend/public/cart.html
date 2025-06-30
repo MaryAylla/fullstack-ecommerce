@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce - Meu Carrinho</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart-styles.css"> </head>
+<body>
+    <header>
+    <div class="header-left">
+        <a href="index.html" class="header-logo"><span>B</span></a> <nav>
+            <ul>
+                <li><a href="index.html">Produtos</a></li>
+                <li><a href="cart.html">Carrinho</a></li>
+                </ul>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="search-container">
+            <input type="text" placeholder="Pesquisar...">
+        </div>
+        <div class="header-auth-buttons" id="nav-auth-links">
+            <a href="login.html" class="btn btn-login">Login</a>
+            <a href="register.html" class="btn btn-signup">Sign-up</a>
+        </div>
+    </div>
+</header>
+
+    <main>
+        <h2>Meu Carrinho de Compras</h2>
+        <section id="cart-items-container">
+            <p id="cart-message">Carregando carrinho...</p>
+            </section>
+
+        <div id="cart-summary">
+            <h3>Resumo do Carrinho</h3>
+            <p>Total de Itens: <span id="cart-total-items">0</span></p>
+            <p>Valor Total: <span id="cart-total-amount">R$ 0,00</span></p>
+            <button id="checkout-button">Finalizar Compra</button>
+            <button id="clear-cart-button" class="btn-secondary">Limpar Carrinho</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 E-commerce Fullstack. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script> </body>
+</html>

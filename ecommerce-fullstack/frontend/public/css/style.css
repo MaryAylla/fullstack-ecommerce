@@ -1,0 +1,428 @@
+/* frontend/public/css/style.css */
+
+/* --- Definição das Fontes Externas --- */
+/* Fonte para títulos e destaques */
+@font-face {
+    font-family: 'Northseano'; /* Nome que você usará no CSS */
+    src: url('../fonts/northseano.ttf') format('truetype'); /* Caminho relativo para a fonte */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* Fonte para o corpo do texto */
+@font-face {
+    font-family: 'Amelaryas'; /* Nome que você usará no CSS */
+    src: url('../fonts/amelaryas.ttf') format('truetype'); /* Caminho relativo para a fonte */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Variáveis de Cores (Paleta de tons de roxo/lilás mais vibrantes) --- */
+:root {
+    --header-bg: #3C2B54; /* Roxo escuro para o cabeçalho (Plum/Eggplant) */
+    --body-bg: #F5F0F8; /* Fundo muito claro e suave, quase branco com toque de lilás */
+    
+    --text-on-dark: #E6E0F0; /* Texto claro para fundo escuro */
+    --text-on-light: #4A3C5C; /* Texto escuro e profundo para fundo claro */
+    --text-accent: #A57FB1; /* Lilás médio para detalhes e hover de navegação */
+    
+    --button-primary-bg: #7B3E9C; /* Roxo mais vibrante para botões principais */
+    --button-primary-text: #FFFFFF; /* Texto branco no botão principal */
+    --button-primary-hover: #6A3489; /* Roxo mais escuro no hover */
+
+    --button-secondary-bg: #A078D9; /* Lilás médio para botões secundários */
+    --button-secondary-text: #FFFFFF;
+    --button-secondary-hover: #8D6BBF;
+
+    --border-light: #D5C1E0; /* Borda clara */
+    --card-bg: #FFFFFF; /* Fundo dos cards */
+    --shadow-light: rgba(0, 0, 0, 0.1); /* Sombra padrão */
+    --shadow-medium: rgba(0, 0, 0, 0.25); /* Sombra mais intensa */
+}
+
+/* --- Reset Básico e Estilos Globais --- */
+body {
+    font-family: 'Amelaryas', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg);
+    color: var(--text-on-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Northseano', serif;
+    color: var(--purple-medium); /* Aplica a nova cor */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+
+::selection {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+}
+
+/* --- Cabeçalho (Header) --- */
+header {
+    background-color: var(--header-bg);
+    color: var(--text-on-dark);
+    padding: 1rem 30px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 70px;
+}
+
+/* Agrupa o logo e a navegação principal à esquerda */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-logo {
+    font-family: 'Northseano', serif;
+    font-size: 2.5em;
+    color: var(--text-on-dark);
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    /* Para simular o ícone 'B' */
+    background-color: white;
+    color: var(--header-bg);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8em;
+    padding-bottom: 3px; /* Pequeno ajuste visual para o texto no círculo */
+}
+.header-logo span { /* Para o texto 'B' */
+    line-height: 1; /* Para alinhar o texto verticalmente */
+}
+
+/* --- Navegação Principal (Nav) --- */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    color: var(--text-on-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lilac-pastel); /* Cor do sublinhado */
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--lilac-pastel);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* --- Seção de Busca e Botões (Direita do Header) --- */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-left: auto;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-container input {
+    padding: 8px 12px;
+    border: 1px solid var(--text-accent); /* Borda da busca com cor de acento */
+    border-radius: 5px;
+    background-color: var(--header-bg); /* Mesma cor de fundo do cabeçalho */
+    color: var(--text-on-dark);
+    font-size: 0.9em;
+    width: 180px;
+    transition: width 0.3s ease, border-color 0.3s ease;
+}
+
+.search-container input::placeholder {
+    color: var(--text-on-dark);
+    opacity: 0.7;
+}
+
+.search-container input:focus {
+    width: 220px;
+    border-color: var(--lilac-pastel);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(177, 156, 217, 0.3); /* Sombra suave ao focar */
+}
+
+/* --- Botões de Autenticação no Header --- */
+.header-auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-auth-buttons .btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-login {
+    background-color: var(--button-primary-bg); /* Roxo vibrante */
+    color: var(--button-primary-text);
+}
+
+.btn-login:hover {
+    background-color: var(--button-primary-hover);
+}
+
+.btn-signup {
+    background-color: var(--button-secondary-bg); /* Lilás médio */
+    color: var(--button-secondary-text);
+}
+
+.btn-signup:hover {
+    background-color: var(--button-secondary-hover);
+}
+
+/* Estilo para o texto "Olá, Usuário!" e botão Sair */
+.nav-auth-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-auth-info span {
+    color: var(--text-on-dark);
+    font-weight: 500;
+}
+
+.nav-auth-info #logout-link {
+    background-color: #dc3545; /* Vermelho para sair */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.nav-auth-info #logout-link:hover {
+    background-color: #c82333;
+}
+
+/* --- Estilos Comuns para Main Content --- */
+main {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: var(--card-bg); /* Fundo branco para o conteúdo principal */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px var(--shadow-light);
+}
+
+main h2 {
+    text-align: center;
+    font-size: 2.5em; /* Aumenta o tamanho do título principal */
+    color: var(--button-primary-bg); /* Usa a cor do botão primário para destaque */
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+main h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px; /* Aumenta a largura da linha */
+    height: 4px; /* Aumenta a espessura da linha */
+    background-color: var(--lilac-pastel);
+    border-radius: 2px;
+}
+
+/* --- Cards de Produto --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.product-card {
+    border: 1px solid var(--border-light); /* Borda clara */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--card-bg); /* Fundo branco para os cards */
+    box-shadow: 0 4px 8px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px var(--shadow-medium);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--lilac-pastel); /* Borda para imagem */
+}
+
+.product-card h3 {
+    font-family: 'Northseano', serif; /* Aplica a fonte de título */
+    font-size: 1.6em;
+    color: var(--text-on-light);
+}
+
+.product-card p {
+    font-size: 0.95em;
+    color: var(--text-dark); /* Usar text-dark para descrições */
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+.product-card .price {
+    font-size: 1.4em;
+    color: var(--button-primary-bg); /* Cor do botão primário para preço */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.product-card button:hover {
+    background-color: var(--button-primary-hover);
+    transform: translateY(-2px);
+}
+
+/* --- Rodapé (Footer) --- */
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: var(--header-bg); /* Mesma cor do cabeçalho */
+    color: var(--text-on-dark);
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px var(--shadow-color);
+}
+
+/* --- Responsividade (Ajustes para telas menores) --- */
+@media (max-width: 992px) { /* Para tablets e telas menores */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 20px;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .header-left {
+        margin-bottom: 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header-logo {
+        font-size: 2em;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+    nav ul li a {
+        display: block;
+        padding: 8px 0;
+    }
+    nav ul li a::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .header-right {
+        margin-top: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-container input {
+        width: calc(100% - 22px);
+        max-width: 250px;
+    }
+    .search-container input:focus {
+        width: calc(100% - 22px);
+    }
+
+    .header-auth-buttons, .nav-auth-info {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .header-auth-buttons .btn, .nav-auth-info #logout-link {
+        width: calc(100% - 20px);
+        text-align: center;
+        padding: 10px 0;
+    }
+}
